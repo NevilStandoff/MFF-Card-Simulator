@@ -39,6 +39,5 @@ for (let i = 0; i < 5; i++) {
     console.log(cardDetails);
     localStorage.setItem("detailed card", JSON.stringify(cardDetails));
     window.location.href = 'https://nevilstandoff.github.io/MFF-Card-Simulator/cards-details.html'
-      '
   });
 }
