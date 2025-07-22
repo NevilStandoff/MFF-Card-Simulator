@@ -22,7 +22,7 @@ const stats = {
       "CROWD CONTROL TIME",
     ],
     [
-      "CRITICAL RATE",
+      "CRITICAL DAMAGE",
       "ALL BASIC DEFENSES INCREASE",
       "MOVEMENT SPEED",
       "FIRE RESIST",
