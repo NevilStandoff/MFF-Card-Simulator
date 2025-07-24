@@ -49,18 +49,18 @@
   flex-grow: 1;
 }
 
-.card-deck-nav ul button {
+.card-deck-nav ul button.active-nav {
+  color: var(--light-blue);
+  border: 1.5px solid var(--light-blue);
+}
+
+.card-deck-nav ul li button {
   width: 100%;
   padding: 15px;
   text-align: center;
-  color: var(--light-blue);
-  border: 1.5px solid var(--light-blue);
-  background-color: transparent;
-}
-
-.card-deck-nav ul li:last-child button {
   color: var(--gray);
   border: 1.5px solid var(--gray);
+  background-color: transparent;
 }
 
 .card-container {
@@ -99,6 +99,31 @@
   border: 1.5px solid var(--light-blue);
   background-color: transparent;
   flex-grow: 1;
+}
+
+.inventory{
+  width: 100%;
+  background-color: var(--dark-blue);
+}
+
+.inventory-card-list{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  /* justify-content: center; */
+}
+
+.inventory-card-list li{
+  height: 500px;
+  background-color: var(--light-blue);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.enter-card-slot{
+  position: absolute;
+  top: 0;
 }
 
 @media only screen and (max-width: 900px){
@@ -142,6 +167,7 @@
     width: 70%;
     height: calc(70vw / 2 * 3);
   }
+
   .card-deck-nav{
     width: 100%;
     min-width: 0px;
@@ -152,9 +178,11 @@
   .card-deck-nav ul button{
     font-size: 14px;
   }
+
   .button-container{
     width: 100%;
   }
+
   .button-container button{
     font-size: 14px;
   }
