@@ -59,8 +59,32 @@ const stats = {
       "IGNORE DEFENSE",
       "CRITICAL DAMAGE",
     ],
-    "guardians of the galaxy": ["MAX HP", "ALL BASIC ATTACKS INCREASE", "ATTACK SPEED"],
+    "guardians of the galaxy": [
+      "MAX HP",
+      "ALL BASIC ATTACKS INCREASE",
+      "ATTACK SPEED",
+    ],
     "new avengers": ["IGNORE DEFENSE", "MAX HP", "CRITICAL DAMAGE"],
+    "marvel zombies return": [
+      "ALL BASIC ATTACKS INCREASE",
+      "MAX HP",
+      "IGNORE DODGE",
+    ],
+    "what if? ghost rider": [
+      "ENERGY ATTACK",
+      "PHYSICAL ATTACK",
+      "ALL BASIC DEFENSES INCREASE",
+    ],
+    "all new, all different new avengers": [
+      "PHYSICAL ATTACK",
+      "ENERGY ATTACK",
+      "ALL BASIC ATTACKS INCREASE",
+    ],
+    "amazing spider-man": [
+      "ALL BASIC ATTACKS INCREASE",
+      "IGNORE DEFENSE",
+      "ATTACK SPEED",
+    ],
   },
   bonusStats: {
     "luna snow": [
@@ -178,6 +202,92 @@ const stats = {
         "ATTACK SPEED",
       ],
     ],
+    "marvel zombies return": [
+      [
+        "ALL BASIC DEFENSES INCREASE",
+        "FIRE RESIST",
+        "ENERGY DEFENSE",
+        "PHYSICAL ATTACK",
+        "MAX HP PROC",
+      ],
+      [
+        "ATTACK SPEED",
+        "ENERGY ATTACK",
+        "DODGE",
+        "LIGHTNING RESIST",
+        "MIND RESIST",
+      ],
+      [
+        "CROWD CONTROL TIME",
+        "COLD RESIST",
+        "CRITICAL RATE",
+        "RECOVERY RATE",
+        "PHYSICAL DEFENSE",
+      ],
+    ],
+    "what if? ghost rider": [
+      [
+        "ATTACK SPEED",
+        "PHYSICAL DEFENSE",
+        "ENERGY DEFENSE",
+        "POISON RESIST",
+        "ALL BASIC ATTACKS PROC",
+      ],
+      [
+        "CRITICAL RATE",
+        "RECOVERY RATE",
+        "CROWD CONTROL TIME",
+        "CRITICAL DAMAGE",
+        "COLD RESIST",
+      ],
+      [
+        "MOVEMENT SPEED",
+        "IGNORE DEFENSE",
+        "DODGE",
+        "COOLDOWN DURATION",
+        "LIGHTNING RESIST",
+      ],
+    ],
+    "all new, all different new avengers": [
+      [
+        "ATTACK SPEED",
+        "MOVEMENT SPEED",
+        "LIGHTNING RESIST",
+        "CRITICAL DAMAGE",
+        "ALL BASIC DEFENSES PROC",
+      ],
+      [
+        "ENERGY DEFENSE",
+        "MAX HP",
+        "PHYSICAL DEFENSE",
+        "RECOVERY RATE",
+        "MIND RESIST",
+      ],
+      [
+        "IGNORE DEFENSE",
+        "DODGE",
+        "FIRE RESIST",
+        "CRITICAL RATE",
+        "POISON RESIST",
+      ],
+    ],
+    "amazing spider-man": [
+      [
+        "ALL BASIC DEFENSES",
+        "CRITICAL RATE",
+        "LIGHTNING RESIST",
+        "ENERGY ATTACK",
+        "CROWD CONTROL TIME PROC",
+      ],
+      [
+        "PHYSICAL ATTACK",
+        "COOLDOWN DURATION",
+        "RECOVERY RATE",
+        "MIND RESIST",
+        "COLD RESIST",
+      ],
+      ["CRITICAL DAMAGE", "MAX HP", "FIRE RESIST", "DODGE", "ENERGY DEFENSE"],
+    ],
   },
   links: {
     "luna snow": "https://thanosvibs.money/static/cards/lunasnow.png",
@@ -185,6 +295,13 @@ const stats = {
     "white fox": "https://thanosvibs.money/static/cards/whitefox.png",
     "guardians of the galaxy": "https://thanosvibs.money/static/cards/bse.png",
     "new avengers": "https://thanosvibs.money/static/cards/newavengers.png",
+    "marvel zombies return":
+      "https://thanosvibs.money/static/cards/mzr_spidey.png",
+    "what if? ghost rider": "https://thanosvibs.money/static/cards/whifgr.png",
+    "all new, all different new avengers":
+      "https://thanosvibs.money/static/cards/anadavengers.png",
+    "amazing spider-man":
+      "https://thanosvibs.money/static/cards/babyspidey.png",
   },
   stars: ["blue", "green", "red"],
 };
@@ -214,40 +331,46 @@ let card1 = {
 
 let cards = {};
 
+if (JSON.parse(localStorage.getItem("slot1"))) {
+  cards = JSON.parse(localStorage.getItem("slot1"));
+} else {
+  createCard("luna snow", 5);
+  createCard("crescent", 2);
+  createCard("guardians of the galaxy", 4);
+  createCard("new avengers", 3);
+  createCard("marvel zombies return", 1);
+  for (let i = 0; i < Object.keys(cards).length; i++) {
+    craftCard(cards[`card${i + 1}`], []);
+  }
+  localStorage.setItem('slot1', JSON.stringify(cards))
+}
 
 const activeCards = {
   slot1: cards,
   slot2: false,
 };
 
-createCard("luna snow");
-createCard("crescent");
-createCard("white fox");
-createCard("guardians of the galaxy");
-createCard("new avengers");
-
-if(JSON.parse(localStorage.getItem("cards"))){
-    for(let i = 0;i < Object.keys(JSON.parse(localStorage.getItem("cards")).slot1).length;i++){
-        let card = JSON.parse(localStorage.getItem("cards")).slot1[`card${i + 1}`]
-        let cardNumber = `card${i + 1}`
-       for(let integer = 0; integer < Object.keys(card).length; integer++){
-        let cardKey = Object.keys(cards[cardNumber])[integer]
-        cards[cardNumber][cardKey] = Object.values(card)[integer]
-       }
+if (JSON.parse(localStorage.getItem("cards"))) {
+  for (
+    let i = 0;
+    i < Object.keys(JSON.parse(localStorage.getItem("cards")).slot1).length;
+    i++
+  ) {
+    let newCards = JSON.parse(localStorage.getItem("cards")).slot1;
+    // console.log(Object.values(newCards)[i])
+    let cardNumber = `card${i + 1}`;
+    for (let integer = 0; integer < 5; integer++) {
+      // let cardKey = Object.keys(cards[cardNumber])[integer];
+      // cards[cardNumber][cardKey] = Object.values(card)[integer];
+      // console.log(cards)
     }
+  }
 }
 
-
-// for(let i = 0; i < Object.keys(cards).length;i++){
-//   craftCard(cards[`card${i + 1}`], [])
-//   // console.log(cards[`card${i + 1}`])
-// }
-
-
-function createCard(cardName) {
-  if (Object.keys(cards).length <= 5) {
+function createCard(cardName, order) {
+  if (checkIfSetContains(cardName) === false) {
     cardName = cardName.toLowerCase();
-    cards[`card${Object.keys(cards).length + 1}`] = {
+    cards[`card${order}`] = {
       fixedStats: [
         stats.fixedStats[`${cardName}`][0],
         stats.fixedStats[`${cardName}`][1],
@@ -278,6 +401,16 @@ function createCard(cardName) {
       name: cardName,
     };
   }
+  localStorage.setItem("slot1", JSON.stringify(cards));
+}
+
+function checkIfSetContains(cardName) {
+  for (let i = 0; i < Object.keys(cards).length; i++) {
+    if (Object.values(cards)[i].name === cardName) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function generateRandomNumber(start, end) {
@@ -311,7 +444,8 @@ function rerollCard(card) {
     stats.bonusStats[card.name][1][generateRandomNumber(0, 4)];
   card.bonusStats[2] =
     stats.bonusStats[card.name][2][generateRandomNumber(0, 4)];
-  card.quality = generateQuality()
+  card.quality = generateQuality();
+  localStorage.setItem("slot1", JSON.stringify(cards));
   return card;
 }
 
@@ -325,23 +459,21 @@ function craftCard(card, savedStats) {
       } else {
         reroll = true;
       }
-    } 
+    }
     if (reroll === true) {
       card.craftStats[i] = stats.craftStats[i][generateRandomNumber(0, 4)];
-      card.stars[i] = stats.stars[generateRandomNumber(0, 2)]
+      card.stars[i] = stats.stars[generateRandomNumber(0, 2)];
     }
   }
+  localStorage.setItem("slot1", JSON.stringify(cards));
 }
 
-let cardDetails = {
-};
+let cardDetails = {};
 
 // if(!cardDetails){
 //   console.log(cardDetails)
 //   cardDetails = activeCards.slot1["card2"]
 // }
-
-
 
 localStorage.setItem("cards", JSON.stringify(activeCards));
 // localStorage.clear()
@@ -357,4 +489,3 @@ export {
   craftCard,
   cardDetails,
 };
-
