@@ -43,17 +43,18 @@ let savedStars = [];
 htmlCraftStage.textContent = `Craft Stage ${cardDetails.quality}`;
 
 htmlChangeCraftStats.addEventListener("click", function () {
+    console.log(cards)
   selectStarsContainer.style.display = "flex";
   document.body.style.overflow = 'hidden'
   document.getElementsByClassName('stats')[0].style.overflow='hidden'
   htmlChangecraftStatsFinal.addEventListener("click", function () {
-    console.log(savedStars);
     let cardOrder;
     for (let i = 0; i < Object.keys(cards).length; i++) {
       if (cards[`card${i + 1}`].name === cardDetails.name)
         cardOrder = `card${i + 1}`;
     }
     craftCard(cards[cardOrder], savedStars);
+    console.log(cards[cardOrder])
     for (let i = 0; i < Object.keys(cardDetails).length; i++) {
       let cardDetailsKey = Object.keys(cardDetails)[i];
       cardDetails[`${cardDetailsKey}`] = cards[cardOrder][`${cardDetailsKey}`];
@@ -109,7 +110,6 @@ htmlChangeCraftStats.addEventListener("click", function () {
   });
   htmlCancelCraft.addEventListener('click', function(){
   selectStarsContainer.style.display = "none";
-  console.log(htmlCancelCraft)
   document.body.style.overflow = 'visible'
   document.getElementsByClassName('stats')[0].style.overflow='scroll'
   })
